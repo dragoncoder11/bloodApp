@@ -14,7 +14,7 @@ class InstructionsListView extends StatelessWidget {
       children: [
         RichText(
           text: TextSpan(children: [
-           const TextSpan(text: 'A blood ', style: TextStyle(color: Colors.red)),
+           const TextSpan(text: 'A blood ', style: TextStyle(color: kPrimaryColor)),
             TextSpan(
               text:
                   ' test must be done before donating blood to ensure that he does not have any serious diseases that may be transmitted through blood.',
