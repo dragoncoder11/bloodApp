@@ -1,14 +1,13 @@
 import 'package:bloody/core/utils/constants.dart';
 import 'package:bloody/core/utils/styles.dart';
-import 'package:bloody/features/home/presentation/views/dontation_page_sec.dart';
 import 'package:bloody/features/home/presentation/views/register_donatation.dart';
+import 'package:bloody/features/home/presentation/widgets/instruction_list.dart';
 import 'package:flutter/material.dart';
 
-import 'instruction_list.dart';
 import 'instructions_list_view.dart';
 
-class DonationPageBody extends StatelessWidget {
-  const DonationPageBody({
+class DonationPageBodys extends StatelessWidget {
+  const DonationPageBodys({
     super.key,
   });
 
@@ -28,7 +27,7 @@ class DonationPageBody extends StatelessWidget {
               height: 20,
             ),
             Image.asset(
-              'assets/blood.png',
+              'assets/blood2.png',
               width: double.infinity,
             ),
             Container(
@@ -39,26 +38,13 @@ class DonationPageBody extends StatelessWidget {
               height: MediaQuery.of(context).size.height * .3,
               child: const Padding(
                 padding: EdgeInsets.all(10),
-                child: InstructionsListView(),
+                child: InstructionsListView2(),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-           /*  Align(
-                alignment: Alignment.bottomRight,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, DonationPageSec.id);
-                  },
-                  style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.red)),
-                  child: const Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )) */
-               Align(
+            Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
                   onPressed: () {

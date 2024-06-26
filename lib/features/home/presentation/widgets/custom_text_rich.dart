@@ -129,7 +129,9 @@ class CustomTextRich extends StatelessWidget {
         Container(
           alignment: Alignment.centerRight,
           child: MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
             color: kPrimaryColor,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
             minWidth: 120,

@@ -34,7 +34,7 @@ class LoginPageBody extends StatelessWidget {
               children: [
                 Text(
                   'Sign in',
-                  style:Theme.of(context).textTheme.headline1
+                  style: Theme.of(context).textTheme.headline1,
                 ),
               ],
             ),
@@ -93,7 +93,7 @@ class LoginPageBody extends StatelessWidget {
                 },
                 child: Text(
                   'Forgot password?',
-                  style:Theme.of(context).textTheme.headline4,
+                  style: Styles.style14Bold.copyWith(color: kPrimaryColor),
                   textAlign: TextAlign.center,
                 )),
             const SizedBox(
@@ -102,13 +102,13 @@ class LoginPageBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Don’t have an account?   ', style: Theme.of(context).textTheme.headline4),
+                Text('Don’t have an account?   ', style: Theme.of(context).textTheme.headline5,),
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(RegisterPage.id);
                   },
                   child: Text(' Sign Up',
-                      style:Theme.of(context).textTheme.headline4),
+                      style: Styles.style14.copyWith(color: kPrimaryColor)),
                 ),
               ],
             ),

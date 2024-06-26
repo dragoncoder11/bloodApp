@@ -14,22 +14,20 @@ class Settings extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon:  Icon(Icons.arrow_back_ios,color:Theme.of(context).primaryColor ,)),
+            icon: const Icon(Icons.arrow_back_ios)),
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
           'App Setting',
-          style: Theme.of(context).textTheme.headline2
+          style: Styles.styles18Bold,
         ),
         centerTitle: true,
-      /*   actions: [
+        actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12),
-            child: GestureDetector(onTap: () {
-              Navigator.pop(context);
-            },child: Text('save',style:Styles.style16SemiBold.copyWith(color: Colors.red),)),
+            child: Text('save',style:Styles.style16SemiBold.copyWith(color: Colors.red),),
           )
-        ], */
+        ],
       ),
       body: const SettingsBody(),
     );

@@ -5,7 +5,9 @@ import 'package:bloody/core/utils/custom_button.dart';
 import 'package:bloody/core/utils/custom_text_field.dart';
 import 'package:bloody/core/utils/styles.dart';
 import 'package:bloody/features/home/presentation/views/home.dart';
-
+import 'package:bloody/features/register/presentation/views/forget_password.dart';
+import 'package:bloody/features/register/presentation/widgets/register.dart';
+import 'package:bloody/features/register/presentation/views/register_page.dart';
 import 'package:bloody/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -29,7 +31,7 @@ class Update extends StatelessWidget {
     return Form(
       key: globalKey,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 40, 20, 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -38,12 +40,12 @@ class Update extends StatelessWidget {
               children: [
                 Text(
                   'Update',
-                  style:Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headline1,
                 ),
               ],
             ),
             const SizedBox(
-              height: 24,
+              height: 40,
             ),
             CustomTextField(
               hint: 'Email',
@@ -115,7 +117,7 @@ class Update extends StatelessWidget {
               title: 'Update',
             ),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

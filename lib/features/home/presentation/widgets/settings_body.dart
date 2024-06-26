@@ -31,7 +31,7 @@ class _SettingsBodyState extends State<SettingsBody> {
                 Text('Dark Mode',style:Theme.of(context).textTheme.headline4),
  Switch(
               inactiveThumbColor: Colors.grey,
-              activeColor: Colors.greenAccent,
+              activeColor: Colors.red,
                 value:  x?true:false ,
                 onChanged: (value) {
                   setState(() {
