@@ -58,153 +58,155 @@ class Register extends StatelessWidget {
     return Form(
       key: globalKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Sign Up',
-                  style: Theme.of(context).textTheme.headline1,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            CustomTextField(
-              hint: 'Email',
-              controller: emailController,
-            ),
-            CustomTextField(
-              hint: 'Password',
-              controller: passwordController,
-              obscureText: true,
-            ),
-            CustomTextField(
-              hint: 'Name',
-              controller: nameController,
-            ),
-            CustomTextField(
-              hint: 'ID Number',
-              controller: idController,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            GestureDetector(
-                onTap: () {
-                  _selectBirthdate(context, (String date) {
-                    selectedBirthdate = date;
-                    birthdateController.text = date.toString();
-                  });
-                },
-                child: TextFormField(
-                  enabled: false,
-                  controller: birthdateController,
-                  decoration: InputDecoration(
-                    hintText: 'Birth Date',
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.grey, width: 1.5),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.grey, width: 1.5),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.grey, width: 1.5),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+        padding: const EdgeInsets.fromLTRB(20, 50, 20, 10),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Sign Up',
+                    style: Theme.of(context).textTheme.headline1,
                   ),
-                )),
-            CustomTextField(
-              hint: 'Gender',
-              controller: genderController,
-            ),
-            CustomTextField(
-              hint: 'Blood Type',
-              controller: typeController,
-            ),
-            CustomTextField(
-              hint: 'Phone Number',
-              controller: telController,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            CustomButton(
-              ontap: () async {
-                var headers = {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  'Authorization':
-                      'Bearer 36|IzrJqDGyCCA5uBvpZUuUN1OS3SdooCDeriNF1OsC395d8b22'
-                };
-                var request = http.Request(
-                    'POST',
-                    Uri.parse(
-                        'https://api-service.cloud/vien2vien/public_html/api/register'));
-                request.body = json.encode({
-                  "email": emailController.text.toString(),
-                  "password": passwordController.text.toString(),
-                  "name": nameController.text.toString(),
-                  'birth_date': selectedBirthdate.toString(),
-                  'gender': genderController.text.toString(),
-                  'phone': telController.text.toString(),
-                  "idnumber": idController.text.toString(),
-                  "bloodtype": typeController.text.toString()
-                });
-                request.headers.addAll(headers);
-
-                http.StreamedResponse response = await request.send();
-
-                if (response.statusCode == 200) {
-                  Navigator.of(context).pushNamed(LoginPage.id);
-                  print(await response.stream.bytesToString());
-                } else {
-                  print(response.reasonPhrase);
-                }
-              },
-              title: 'Sign up',
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(.3),
-                      borderRadius: BorderRadius.circular(12),
+                ],
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              CustomTextField(
+                hint: 'Email',
+                controller: emailController,
+              ),
+              CustomTextField(
+                hint: 'Password',
+                controller: passwordController,
+                obscureText: true,
+              ),
+              CustomTextField(
+                hint: 'Name',
+                controller: nameController,
+              ),
+              CustomTextField(
+                hint: 'ID Number',
+                controller: idController,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              GestureDetector(
+                  onTap: () {
+                    _selectBirthdate(context, (String date) {
+                      selectedBirthdate = date;
+                      birthdateController.text = date.toString();
+                    });
+                  },
+                  child: TextFormField(
+                    enabled: false,
+                    controller: birthdateController,
+                    decoration: InputDecoration(
+                      hintText: 'Birth Date',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 1.5),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 1.5),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 1.5),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    child: Image.asset(
-                      'assets/google.png',
-                      height: 50,
-                      width: 50,
-                    )),
-                const SizedBox(
-                  width: 15,
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(.3),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Image.asset(
-                      'assets/apple.png',
-                      height: 50,
-                      width: 50,
-                    )),
-              ],
-            )
-          ],
+                  )),
+              CustomTextField(
+                hint: 'Gender',
+                controller: genderController,
+              ),
+              CustomTextField(
+                hint: 'Blood Type',
+                controller: typeController,
+              ),
+              CustomTextField(
+                hint: 'Phone Number',
+                controller: telController,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              CustomButton(
+                ontap: () async {
+                  var headers = {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization':
+                        'Bearer 36|IzrJqDGyCCA5uBvpZUuUN1OS3SdooCDeriNF1OsC395d8b22'
+                  };
+                  var request = http.Request(
+                      'POST',
+                      Uri.parse(
+                          'https://api-service.cloud/vien2vien/public_html/api/register'));
+                  request.body = json.encode({
+                    "email": emailController.text.toString(),
+                    "password": passwordController.text.toString(),
+                    "name": nameController.text.toString(),
+                    'birth_date': selectedBirthdate.toString(),
+                    'gender': genderController.text.toString(),
+                    'phone': telController.text.toString(),
+                    "idnumber": idController.text.toString(),
+                    "bloodtype": typeController.text.toString()
+                  });
+                  request.headers.addAll(headers);
+          
+                  http.StreamedResponse response = await request.send();
+          
+                  if (response.statusCode == 200) {
+                    Navigator.of(context).pushNamed(LoginPage.id);
+                    print(await response.stream.bytesToString());
+                  } else {
+                    print(response.reasonPhrase);
+                  }
+                },
+                title: 'Sign up',
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(.3),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.asset(
+                        'assets/google.png',
+                        height: 50,
+                        width: 50,
+                      )),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(.3),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.asset(
+                        'assets/apple.png',
+                        height: 50,
+                        width: 50,
+                      )),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

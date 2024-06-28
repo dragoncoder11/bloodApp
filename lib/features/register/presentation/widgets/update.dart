@@ -30,124 +30,240 @@ class Update extends StatelessWidget {
 
     return Form(
       key: globalKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Update',
-                  style: Theme.of(context).textTheme.headline1,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            CustomTextField(
-              hint: 'Email',
-              controller: emailController,
-            ),
-            CustomTextField(
-              hint: 'Password',
-              controller: passwordController,
-              obscureText: true,
-            ),
-            CustomTextField(
-              hint: 'Name',
-              controller: nameController,
-            ),
-            CustomTextField(
-              hint: 'ID Number',
-              controller: idController,
-            ),
-            CustomTextField(
-              hint: 'Age',
-              controller: birthdateController,
-            ),
-            CustomTextField(
-              hint: 'Gender',
-              controller: genderController,
-            ),
-            CustomTextField(
-              hint: 'Blood Type',
-              controller: typeController,
-            ),
-            CustomTextField(
-              hint: 'Phone Number',
-              controller: telController,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            CustomButton(
-              ontap: () async {
-                var headers = {
-                  'Accept': 'application/json',
-                  'Authorization': 'Bearer ' + BloodApp.tocken
-                };
-                var request = http.MultipartRequest(
-                    'POST',
-                    Uri.parse(
-                        'https://api-service.cloud/vien2vien/public_html/api/updateprofile'));
-                request.fields.addAll({
-                  'email': emailController.text.toString(),
-                  'password': passwordController.text.toString(),
-                  'idnumber': idController.text.toString(),
-                  'birth_date': birthdateController.text.toString(),
-                  'gender': genderController.text.toString(),
-                  'bloodtype': typeController.text.toString(),
-                  'phone': telController.text.toString(),
-                  'name': nameController.text.toString()
-                });
-
-                request.headers.addAll(headers);
-
-                http.StreamedResponse response = await request.send();
-
-                if (response.statusCode == 200) {
-                  Navigator.of(context).pushNamed(Home.id);
-                } else {
-                  print(response.reasonPhrase);
-                }
-              },
-              title: 'Update',
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+          child: SingleChildScrollView(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(.3),
-                      borderRadius: BorderRadius.circular(12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Update',
+                      style: Theme.of(context).textTheme.headline1,
                     ),
-                    child: Image.asset(
-                      'assets/google.png',
-                      height: 50,
-                      width: 50,
-                    )),
-                const SizedBox(
-                  width: 15,
+                  ],
                 ),
-                Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(.3),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Image.asset(
-                      'assets/apple.png',
-                      height: 50,
-                      width: 50,
-                    )),
+                const SizedBox(
+                  height: 24,
+                ),
+                CustomTextField(
+                  hint: 'Email',
+                  controller: emailController,
+                ),
+                CustomTextField(
+                  hint: 'Password',
+                  controller: passwordController,
+                  obscureText: true,
+                ),
+                CustomTextField(
+                  hint: 'Name',
+                  controller: nameController,
+                ),
+                CustomTextField(
+                  hint: 'ID Number',
+                  controller: idController,
+                ),
+                CustomTextField(
+                  hint: 'Age',
+                  controller: birthdateController,
+                ),
+                CustomTextField(
+                  hint: 'Gender',
+                  controller: genderController,
+                ),
+                CustomTextField(
+                  hint: 'Blood Type',
+                  controller: typeController,
+                ),
+                CustomTextField(
+                  hint: 'Phone Number',
+                  controller: telController,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              /*   CustomButton(
+                  ontap: () async {
+                    var headers = {
+                      'Accept': 'application/json',
+                      'Authorization': 'Bearer ' + BloodApp.tocken
+                    };
+                    var request = http.MultipartRequest(
+                        'POST',
+                        Uri.parse(
+                            'https://api-service.cloud/vien2vien/public_html/api/updateprofile'));
+                    request.fields.addAll({
+                      'email': emailController.text.toString(),
+                      'password': passwordController.text.toString(),
+                      'idnumber': idController.text.toString(),
+                      'birth_date': birthdateController.text.toString(),
+                      'gender': genderController.text.toString(),
+                      'bloodtype': typeController.text.toString(),
+                      'phone': telController.text.toString(),
+                      'name': nameController.text.toString()
+                    });
+                    
+                    request.headers.addAll(headers);
+                    
+                    http.StreamedResponse response = await request.send();
+                    
+                    if (response.statusCode == 200) {
+                      Navigator.of(context).pushNamed(Home.id);
+                    } else {
+                      print(response.reasonPhrase);
+                    }
+                  },
+                  title: 'Update',
+                ), */
+               CustomButton(
+  ontap: () async {
+    try {
+      // Show circular progress indicator
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+
+      var headers = {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + BloodApp.tocken,
+      };
+
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+          'https://api-service.cloud/vien2vien/public_html/api/updateprofile',
+        ),
+      );
+
+      request.fields.addAll({
+        'email': emailController.text.toString(),
+        'password': passwordController.text.toString(),
+        'idnumber': idController.text.toString(),
+        'birth_date': birthdateController.text.toString(),
+        'gender': genderController.text.toString(),
+        'bloodtype': typeController.text.toString(),
+        'phone': telController.text.toString(),
+        'name': nameController.text.toString(),
+      });
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        // Dismiss the circular progress indicator
+        Navigator.of(context).pop();
+
+        // Show success message
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Success'),
+              content: Text('Profile updated successfully.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Home.id);
+                  },
+                  child: Text('OK'),
+                ),
               ],
-            )
-          ],
+            );
+          },
+        );
+      } else {
+        // Dismiss the circular progress indicator
+        Navigator.of(context).pop();
+
+        // Show error message
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Success'),
+              content: Text('Profile updated successfully.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      // Dismiss the circular progress indicator
+      Navigator.of(context).pop();
+
+      // Show error message
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('An error occurred. Please try again later.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  },
+  title: 'Update',
+),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(.3),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Image.asset(
+                          'assets/google.png',
+                          height: 50,
+                          width: 50,
+                        )),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(.3),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Image.asset(
+                          'assets/apple.png',
+                          height: 50,
+                          width: 50,
+                        )),
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

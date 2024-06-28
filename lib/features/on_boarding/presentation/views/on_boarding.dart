@@ -54,7 +54,8 @@ class OnBoarding extends StatelessWidget {
                           children: [
                             Text(
                               titles[index],
-                              style: Styles.style16SemiBold.copyWith(color: Colors.black),
+                              //style: Styles.style16SemiBold.copyWith(color: Colors.black),
+                              style: Theme.of(context).textTheme.headline2,
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(
@@ -62,7 +63,7 @@ class OnBoarding extends StatelessWidget {
                             ),
                             Text(
                               subTitles[index],
-                              style:Styles.style12,
+                              style:Styles.style12.copyWith(color: Theme.of(context).primaryColor),
                               textAlign: TextAlign.center,
                             ),
                           ],

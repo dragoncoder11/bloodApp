@@ -21,7 +21,7 @@ class DonationPageBody extends StatelessWidget {
           children: [
             Text(
               'Instructions ',
-              style: Styles.styles18Bold,
+              style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             ),
             const SizedBox(

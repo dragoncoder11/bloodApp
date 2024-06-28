@@ -22,7 +22,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 15),
       child: TextFormField(
         cursorColor: kTextGreyColor,
         controller: widget.controller,
@@ -40,7 +40,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   widget.obscureText=!widget.obscureText;
                 });
               },
-              icon: widget.obscureText?const Icon(Icons.visibility_off):const Icon(Icons.visibility)):null,
+              icon: widget.obscureText? Icon(Icons.visibility_off,color: Theme.of(context).primaryColor,): Icon(Icons.visibility,color: Theme.of(context).primaryColor,)):null,
           hintText: widget.hint,
           hintStyle: Styles.style11.copyWith(
             color: Colors.grey,

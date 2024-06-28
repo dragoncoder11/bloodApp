@@ -1,4 +1,5 @@
 import 'package:bloody/core/utils/styles.dart';
+import 'package:bloody/features/home/presentation/views/home.dart';
 import 'package:bloody/features/home/presentation/widgets/settings_body.dart';
 import 'package:flutter/material.dart';
 
@@ -12,14 +13,14 @@ class Settings extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context).pushReplacementNamed(Home.id);
             },
-            icon: const Icon(Icons.arrow_back_ios)),
+            icon: Icon(Icons.arrow_back_ios,color:Theme.of(context).primaryColor ,)),
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
           'App Setting',
-          style: Styles.styles18Bold,
+          style: Theme.of(context).textTheme.headline2,
         ),
         centerTitle: true,
         actions: [
